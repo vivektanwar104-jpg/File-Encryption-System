@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AES Secure File Encryption</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:black;
+    position:relative;
+}
+
+body::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1920&auto=format&fit=crop') no-repeat center center/cover;
+    animation:bgZoom 25s infinite alternate;
+    filter:brightness(0.35);
+}
+
+@keyframes bgZoom{
+    from{
+        transform:scale(1);
+    }
+    to{
+        transform:scale(1.15);
+    }
+}
+
+.container{
+    position:relative;
+    width:430px;
+    padding:35px;
+    border-radius:25px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.15);
+    box-shadow:
+        0 0 20px rgba(0,255,255,0.3),
+        0 0 40px rgba(0,255,255,0.2);
+    z-index:1;
+    animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-10px);
+    }
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+.title{
+    text-align:center;
+    font-size:32px;
+    color:#00e5ff;
+    margin-bottom:10px;
+    text-shadow:0 0 10px cyan;
+}
+
+.subtitle{
+    text-align:center;
+    color:#ddd;
+    margin-bottom:25px;
+    font-size:14px;
+}
+
+.section{
+    margin-top:20px;
+}
+
+.section h2{
+    color:white;
+    margin-bottom:15px;
+    font-size:22px;
+}
+
+input[type="file"],
+input[type="password"]{
+    width:100%;
+    padding:13px;
+    margin:10px 0;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:rgba(255,255,255,0.12);
+    color:white;
+    font-size:15px;
+}
+
+input::placeholder{
+    color:#ccc;
+}
+
+button{
+    width:100%;
+    padding:13px;
+    margin-top:10px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(45deg,#00e5ff,#0072ff);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+button:hover{
+    transform:scale(1.04);
+    box-shadow:0 0 15px cyan;
+}
+
+hr{
+    border:0.5px solid rgba(255,255,255,0.2);
+    margin:30px 0;
+}
+
+.footer{
+    text-align:center;
+    margin-top:20px;
+    color:#aaa;
+    font-size:13px;
+}
+
+.glow{
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:radial-gradient(circle,rgba(0,255,255,0.15),transparent);
+    border-radius:50%;
+    top:-100px;
+    left:-100px;
+    z-index:0;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<div class="container">
+
+    <div class="title">🔐 AES Secure Vault</div>
+
+    <div class="subtitle">
+        Advanced File Encryption & Decryption System
+    </div>
+
+    <div class="section">
+        <form action="/encrypt" method="post" enctype="multipart/form-data">
+
+            <h2>Encrypt File</h2>
+
+            <input type="file" name="file" required>
+
+            <input type="password" name="password" placeholder="Enter Secure Password" required>
+
+            <button type="submit">Encrypt Now</button>
+
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="section">
+        <form action="/decrypt" method="post" enctype="multipart/form-data">
+
+            <h2>Decrypt File</h2>
+
+            <input type="file" name="file" required>
+
+            <input type="password" name="password" placeholder="Enter Password" required>
+
+            <button type="submit">Decrypt Now</button>
+
+        </form>
+    </div>
+
+    <div class="footer">
+        Powered by AES Encryption • Flask • SHA-256
+    </div>
+
+</div>
+
+</body>
+</html>
